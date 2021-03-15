@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDP", "main\IDP.csproj", "{055A5FFB-DA25-4ABE-B9CE-D70FEBF65EED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{055A5FFB-DA25-4ABE-B9CE-D70FEBF65EED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{055A5FFB-DA25-4ABE-B9CE-D70FEBF65EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{055A5FFB-DA25-4ABE-B9CE-D70FEBF65EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{055A5FFB-DA25-4ABE-B9CE-D70FEBF65EED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB26F4FB-733C-4FE7-AC6B-389F12C7EBB7}
+	EndGlobalSection
+EndGlobal
