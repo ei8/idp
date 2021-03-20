@@ -6,16 +6,16 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["main/IDP.csproj", "main/"]
-RUN dotnet restore "main/IDP.csproj"
+COPY ["main/IdP.csproj", "main/"]
+RUN dotnet restore "main/IdP.csproj"
 COPY . .
 WORKDIR "/src/main"
-RUN dotnet build "IDP.csproj" -c Release -o /app/build
+RUN dotnet build "IdP.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "IDP.csproj" -c Release -o /app/publish
+RUN dotnet publish "IdP.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "IDP.dll"]
+ENTRYPOINT ["dotnet", "IdP.dll"]

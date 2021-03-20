@@ -10,7 +10,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 
-namespace IDP
+namespace ei8.IdP
 {
     public class Program
     {

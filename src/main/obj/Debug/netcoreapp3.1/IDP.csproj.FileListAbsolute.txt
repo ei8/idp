@@ -24,7 +24,6 @@ C:\Users\me353\Documents\GitHub\ei8\idp\src\main\ei8-IDP\IDP\obj\Debug\netcoreap
 C:\Users\me353\Documents\GitHub\ei8\idp\src\main\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\me353\Documents\GitHub\ei8\idp\src\main\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\me353\Documents\GitHub\ei8\idp\src\main\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
-C:\Users\me353\Documents\GitHub\ei8\idp\src\main\obj\Debug\netcoreapp3.1\IDP.csprojAssemblyReference.cache
 C:\Users\me353\Documents\GitHub\ei8\idp\src\main\obj\Debug\netcoreapp3.1\IDP.RazorAssemblyInfo.cache
 C:\Users\me353\Documents\GitHub\ei8\idp\src\main\obj\Debug\netcoreapp3.1\IDP.RazorAssemblyInfo.cs
 C:\Users\me353\Documents\GitHub\ei8\idp\src\main\obj\Debug\netcoreapp3.1\IDP.AssemblyInfoInputs.cache

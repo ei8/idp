@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\me353\\Documents\\GitHub\\ei8\\idp\\src\\main\\IDP.csproj": {}
+    "C:\\Users\\me353\\Documents\\GitHub\\ei8\\idp\\src\\main\\IdP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\me353\\Documents\\GitHub\\ei8\\idp\\src\\main\\IDP.csproj": {
+    "C:\\Users\\me353\\Documents\\GitHub\\ei8\\idp\\src\\main\\IdP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\me353\\Documents\\GitHub\\ei8\\idp\\src\\main\\IDP.csproj",
-        "projectName": "ei8.IDP",
-        "projectPath": "C:\\Users\\me353\\Documents\\GitHub\\ei8\\idp\\src\\main\\IDP.csproj",
+        "projectUniqueName": "C:\\Users\\me353\\Documents\\GitHub\\ei8\\idp\\src\\main\\IdP.csproj",
+        "projectName": "ei8.IdP",
+        "projectPath": "C:\\Users\\me353\\Documents\\GitHub\\ei8\\idp\\src\\main\\IdP.csproj",
         "packagesPath": "C:\\Users\\me353\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\me353\\Documents\\GitHub\\ei8\\idp\\src\\main\\obj\\",
         "projectStyle": "PackageReference",

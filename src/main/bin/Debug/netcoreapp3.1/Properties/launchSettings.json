@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "IDP": {
+    "IdP": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

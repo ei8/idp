@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IDP
+namespace ei8.IdP
 {
     public static class Config
     {

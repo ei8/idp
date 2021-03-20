@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <AssemblyName>ei8.IDP</AssemblyName>
-    <RootNamespace>ei8.IDP</RootNamespace>
+    <AssemblyName>ei8.IdP</AssemblyName>
+    <RootNamespace>ei8.IdP</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

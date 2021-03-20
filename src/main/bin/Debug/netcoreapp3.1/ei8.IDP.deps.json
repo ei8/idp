@@ -22,7 +22,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "ei8.IDP/1.0.0": {
+      "ei8.IdP/1.0.0": {
         "dependencies": {
           "IdentityServer4": "4.1.1",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.10.8",
@@ -302,10 +302,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "ei8.IDP.dll": {}
+          "ei8.IdP.dll": {}
         },
         "compile": {
-          "ei8.IDP.dll": {}
+          "ei8.IdP.dll": {}
         }
       },
       "IdentityModel/4.4.0": {
@@ -2739,7 +2739,7 @@
     }
   },
   "libraries": {
-    "ei8.IDP/1.0.0": {
+    "ei8.IdP/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
