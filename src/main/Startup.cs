@@ -81,8 +81,3 @@ namespace ei8.IdP
         }
     }
 }
-
-
-// TODO: 
-// database usage
-// hostname replacement

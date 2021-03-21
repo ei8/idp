@@ -6,6 +6,7 @@
     <AssemblyName>ei8.IdP</AssemblyName>
     <RootNamespace>ei8.IdP</RootNamespace>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>a0563dfc-5696-476f-842b-e3a388c93126</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
