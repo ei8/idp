@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  idp:
+    env_file:
+      - ./var1.env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - /C/ei8/identity:/C/db
+    ports:
+      - 192.168.1.110:64000:80

@@ -37,8 +37,11 @@ namespace ei8.IdP
             })
                 .AddTestUsers(TestUsers.Users);
 
+            // TODO: fix samesite issue by using https
+            // https://www.thinktecture.com/en/identity/samesite/prepare-your-identityserver/
             services.Configure<CookieAuthenticationOptions>(IdentityServerConstants.DefaultCookieAuthenticationScheme, options =>
             {
+                options.Cookie.Domain = "192.168.1.110";
                 options.Cookie.SameSite = SameSiteMode.None;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 options.Cookie.IsEssential = true;
@@ -78,3 +81,8 @@ namespace ei8.IdP
         }
     }
 }
+
+
+// TODO: 
+// database usage
+// hostname replacement
