@@ -1,6 +1,6 @@
 using System;
 
-namespace IDP.Models
+namespace ei8.IdP.Models
 {
     public class ErrorViewModel
     {

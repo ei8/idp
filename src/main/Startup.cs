@@ -2,31 +2,48 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ei8.IdP.Adapted;
+using ei8.IdP.Data;
+using ei8.IdP.Models;
+using IdentityModel;
 using IdentityServer4;
+using IdentityServer4.AspNetIdentity;
 using IdentityServerHost.Quickstart.UI;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
 namespace ei8.IdP
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IWebHostEnvironment Environment { get; }
+        public IConfiguration Configuration { get; }
+
+        public Startup(IWebHostEnvironment environment, IConfiguration configuration)
         {
+            Environment = environment;
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentityCustom<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             var builder = services.AddIdentityServer(options =>
             {
@@ -34,28 +51,43 @@ namespace ei8.IdP
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
-            })
-                .AddTestUsers(TestUsers.Users);
+                // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
+                // options.EmitStaticAudienceClaim = true;
+            });
+            
+            // in-memory, code config
+            builder.AddInMemoryIdentityResources(Config.Ids);
+            builder.AddInMemoryApiResources(Config.Apis);
+            builder.AddInMemoryClients(Config.Clients);
 
-            // TODO: fix samesite issue by using https
-            // https://www.thinktecture.com/en/identity/samesite/prepare-your-identityserver/
+            #region IdentityServerBuilderExtensions.AddAspNetIdentity<ApplicationUser>(); 
+            // TODO: is this region still necessary for claims retrieval?
+            // builder.Services.AddTransientDecorator<IUserClaimsPrincipalFactory<ApplicationUser>, UserClaimsFactory<ApplicationUser>>();
+
+            //builder.Services.Configure<IdentityOptions>(options =>
+            //{
+            //    options.ClaimsIdentity.UserIdClaimType = JwtClaimTypes.Subject;
+            //    options.ClaimsIdentity.UserNameClaimType = JwtClaimTypes.Name;
+            //    options.ClaimsIdentity.RoleClaimType = JwtClaimTypes.Role;
+            //});
+
+            //builder.AddResourceOwnerValidator<ResourceOwnerPasswordValidator<ApplicationUser>>();
+            //builder.AddProfileService<UserProfileService>();
+            #endregion
+
+            // not recommended for production - you need to store your key material somewhere secure
+            builder.AddDeveloperSigningCredential();
+
             services.Configure<CookieAuthenticationOptions>(IdentityServerConstants.DefaultCookieAuthenticationScheme, options =>
             {
+                // TODO: make configurable
                 options.Cookie.Domain = "192.168.1.110";
                 options.Cookie.SameSite = SameSiteMode.None;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 options.Cookie.IsEssential = true;
             });
 
-            // in-memory, code config
-            builder.AddInMemoryIdentityResources(Config.Ids);
-            builder.AddInMemoryApiResources(Config.Apis);
-            builder.AddInMemoryClients(Config.Clients);
-
-            // not recommended for production - you need to store your key material somewhere secure
-            builder.AddDeveloperSigningCredential();
-
-            services.AddAuthentication();            
+            services.AddAuthentication();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
