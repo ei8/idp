@@ -19,17 +19,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using static ei8.IdP.Constants;
 
 namespace ei8.IdP
 {
     public class Startup
     {
-        public IWebHostEnvironment Environment { get; }
         public IConfiguration Configuration { get; }
 
-        public Startup(IWebHostEnvironment environment, IConfiguration configuration)
+        public Startup(IConfiguration configuration)
         {
-            Environment = environment;
             Configuration = configuration;
         }
 
@@ -39,7 +38,7 @@ namespace ei8.IdP
             services.AddControllersWithViews();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite(Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ConnectionStringsDefault)));
 
             services.AddIdentityCustom<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
