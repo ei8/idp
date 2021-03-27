@@ -79,8 +79,7 @@ namespace ei8.IdP
 
             services.Configure<CookieAuthenticationOptions>(IdentityServerConstants.DefaultCookieAuthenticationScheme, options =>
             {
-                // TODO: make configurable
-                options.Cookie.Domain = "192.168.1.110";
+                options.Cookie.Domain = Environment.GetEnvironmentVariable(EnvironmentVariableKeys.CookieDomain);
                 options.Cookie.SameSite = SameSiteMode.None;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 options.Cookie.IsEssential = true;

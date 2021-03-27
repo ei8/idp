@@ -10,14 +10,16 @@ namespace ei8.IdP
         public struct Paths
         {
             public const string Logout = "/Account/LogoutCallback";
+            public const string Login = "/Account/LoginCallback";
         }
         public struct EnvironmentVariableKeys
         {
-            public const string ClientsXamarin = "CLIENTS_D23";
+            public const string ClientsD23 = "CLIENTS_D23";
             public const string IssuerUri = "ISSUER_URI";
             public const string ConnectionStringsDefault = "CONNECTION_STRINGS_DEFAULT";
             public const string HostNameExpected = "HOST_NAME_EXPECTED";
             public const string HostNameReplacement = "HOST_NAME_REPLACEMENT";
+            public const string CookieDomain = "COOKIE_DOMAIN";
         }
     }
 }

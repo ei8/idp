@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static ei8.IdP.Constants;
 
 namespace ei8.IdP
 {
@@ -13,17 +14,19 @@ namespace ei8.IdP
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-                new IdentityResources.Email(),
-                new IdentityResource("country", new [] { "country" })
+                new IdentityResources.Email() 
+                // TODO:,
+                // new IdentityResource("country", new [] { "country" })
             };
 
 
         public static IEnumerable<ApiResource> Apis =>
             new ApiResource[]
             {
-                new ApiResource("bethanyspieshophrapi",
-                    "Bethany's Pie Shop HR API",
-                    new [] { "country" })
+                new ApiResource("avatarapi",
+                    "ei8 Avatar") 
+                    // TODO: ,
+                    // new [] { "country" })
             };
 
 
@@ -32,18 +35,18 @@ namespace ei8.IdP
             {
                 new Client
                 {
-                    ClientId = "bethanyspieshophr",
-                    ClientName = "Bethany's Pie Shop HRM",
+                    ClientId = "d23",
+                    ClientName = "ei8 d#",
                     AllowOfflineAccess = true,
                     AccessTokenLifetime = 120,
                     RequireConsent = false,
                     RequirePkce = true,
                     AllowedGrantTypes = GrantTypes.Code,
                     ClientSecrets = {
-                        new Secret("108B7B4F-BEFC-4DD2-82E1-7F025F0F75D0".Sha256()) },
-                    RedirectUris = { "https://localhost:44301/signin-oidc" },
-                    PostLogoutRedirectUris = { "https://localhost:44301/signout-oidc" },
-                    AllowedScopes = { "openid", "profile", "email", "bethanyspieshophrapi" }
+                        new Secret("978c1052-1184-48f7-89f4-4fd034847a06".Sha256()) },
+                    RedirectUris = { Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23) + Constants.Paths.Login },
+                    PostLogoutRedirectUris = { Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23) + Constants.Paths.Logout },
+                    AllowedScopes = { "openid", "profile", "email", "avatarapi" }
                 }
             };
     }
