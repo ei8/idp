@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using ei8.IdP.Adapted;
 using ei8.IdP.Data;
@@ -74,8 +76,18 @@ namespace ei8.IdP
             //builder.AddProfileService<UserProfileService>();
             #endregion
 
+            #region Signing Credential
             // not recommended for production - you need to store your key material somewhere secure
+            //if (_env.IsDevelopment())
+            //{
             builder.AddDeveloperSigningCredential();
+            //}
+            //else
+            //{
+            //var certificate = new X509Certificate2("/https/aspnetapp.pfx", "eB245ebK28ubsQJR");
+            //builder.AddSigningCredential(certificate);
+            //}
+            #endregion
 
             services.Configure<CookieAuthenticationOptions>(IdentityServerConstants.DefaultCookieAuthenticationScheme, options =>
             {
