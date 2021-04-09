@@ -43,7 +43,7 @@ namespace ei8.IdP
                     RequirePkce = true,
                     AllowedGrantTypes = GrantTypes.Code,
                     ClientSecrets = {
-                        new Secret("978c1052-1184-48f7-89f4-4fd034847a06".Sha256()) },
+                        new Secret( Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23Secret).Sha256()) },
                     RedirectUris = { Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23) + Constants.Paths.Login },
                     PostLogoutRedirectUris = { Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23) + Constants.Paths.Logout },
                     AllowedScopes = { "openid", "profile", "email", "avatarapi" }
