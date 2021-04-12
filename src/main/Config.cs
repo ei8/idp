@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,8 +47,14 @@ namespace ei8.IdP
                         new Secret( Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23Secret).Sha256()) },
                     RedirectUris = { Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23) + Constants.Paths.Login },
                     PostLogoutRedirectUris = { Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23) + Constants.Paths.Logout },
-                    AllowedScopes = { "openid", "profile", "email", "avatarapi" }
+                    AllowedScopes = { IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, IdentityServerConstants.StandardScopes.Email, "avatarapi" }
                 }
             };
+
+        public static IEnumerable<ApiScope> ApiScopes =>
+             new List<ApiScope>
+             {
+                 new ApiScope(name: "avatarapi", displayName: "Access Avatar API endpoints.")
+             };
     }
 }
