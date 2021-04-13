@@ -58,8 +58,8 @@ namespace ei8.IdP
             
             // in-memory, code config
             builder.AddInMemoryIdentityResources(Config.Ids);
-            builder.AddInMemoryApiResources(Config.Apis);
             builder.AddInMemoryApiScopes(Config.ApiScopes);
+            builder.AddInMemoryApiResources(Config.Apis);            
             builder.AddInMemoryClients(Config.Clients);
 
             #region IdentityServerBuilderExtensions.AddAspNetIdentity<ApplicationUser>(); 

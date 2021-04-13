@@ -1,4 +1,5 @@
-﻿using IdentityServer4;
+﻿using IdentityModel;
+using IdentityServer4;
 using IdentityServer4.Models;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,17 @@ namespace ei8.IdP
 
 
         public static IEnumerable<ApiResource> Apis =>
-            new ApiResource[]
-            {
+           new ApiResource[]
+           {
                 new ApiResource("avatarapi",
-                    "ei8 Avatar") 
-                    // TODO: ,
-                    // new [] { "country" })
-            };
+                    "ei8 Avatar")
+                {
+                    Scopes = new[] { "avatarapi" },
+                    ApiSecrets = new[] { new Secret(Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ApisAvatarSecret).ToSha256())}
+                }
+               // TODO: ,
+               // new [] { "country" })
+           };
 
 
         public static IEnumerable<Client> Clients =>
@@ -40,11 +45,10 @@ namespace ei8.IdP
                     ClientName = "ei8 d#",
                     // TODO: AllowOfflineAccess = true,
                     //AccessTokenLifetime = 120,
-                    //RequireConsent = false,
+                    RequireConsent = true,
                     RequirePkce = true,
                     AllowedGrantTypes = GrantTypes.Code,
-                    ClientSecrets = {
-                        new Secret( Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23Secret).Sha256()) },
+                    ClientSecrets = { new Secret( Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23Secret).Sha256()) },
                     RedirectUris = { Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23) + Constants.Paths.Login },
                     PostLogoutRedirectUris = { Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23) + Constants.Paths.Logout },
                     AllowedScopes = { IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, IdentityServerConstants.StandardScopes.Email, "avatarapi" }
