@@ -43,8 +43,8 @@ namespace ei8.IdP
                 {
                     ClientId = "d23",
                     ClientName = "ei8 d#",
-                    // TODO: AllowOfflineAccess = true,
-                    //AccessTokenLifetime = 120,
+                    AllowOfflineAccess = true,
+                    AccessTokenLifetime = 120,
                     RequireConsent = true,
                     RequirePkce = true,
                     AllowedGrantTypes = GrantTypes.Code,
