@@ -20,7 +20,6 @@ namespace ei8.IdP
             public const string ConnectionStringsDefault = "CONNECTION_STRINGS_DEFAULT";
             public const string HostNameExpected = "HOST_NAME_EXPECTED";
             public const string HostNameReplacement = "HOST_NAME_REPLACEMENT";
-            public const string CookieDomain = "COOKIE_DOMAIN";
         }
     }
 }

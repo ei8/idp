@@ -90,14 +90,6 @@ namespace ei8.IdP
             //}
             #endregion
 
-            services.Configure<CookieAuthenticationOptions>(IdentityServerConstants.DefaultCookieAuthenticationScheme, options =>
-            {
-                options.Cookie.Domain = Environment.GetEnvironmentVariable(EnvironmentVariableKeys.CookieDomain);
-                options.Cookie.SameSite = SameSiteMode.None;
-                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-                options.Cookie.IsEssential = true;
-            });
-
             services.AddAuthentication();
         }
 
