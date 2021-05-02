@@ -3,6 +3,7 @@
 
 
 using ei8.IdP.Models;
+using ei8.IdP.Models.AccountViewModels;
 using IdentityModel;
 using IdentityServer4;
 using IdentityServer4.Events;
@@ -18,6 +19,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace IdentityServerHost.Quickstart.UI
@@ -229,6 +231,80 @@ namespace IdentityServerHost.Quickstart.UI
 
             return View("LoggedOut", vm);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Register(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    // Associate the role with the new user 
+                    // TODO: await UserManager.AddToRoleAsync(user.Id, model.UserRole);
+                    // Create customized claim 
+                    var createdUser = await _userManager.FindByIdAsync(user.Id);
+                    await _userManager.AddClaimsAsync(
+                        createdUser,
+                        new Claim[]
+                            {
+                                                new Claim("email", model.Email),
+                                                new Claim("family_name", model.FamilyName),
+                                                new Claim("given_name", model.GivenName)
+                            }
+                        );
+                    // TODO: _logger.LogInformation("User created a new account with password.");
+
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    // var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                    // await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+
+                    // await _signInManager.SignInAsync(user, isPersistent: false);
+                    // _logger.LogInformation("User created a new account with password.");
+                    return RedirectToLocal(returnUrl);
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        #region Helpers
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+        }
+
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+        }
+
+        #endregion
 
         [HttpGet]
         public IActionResult AccessDenied()

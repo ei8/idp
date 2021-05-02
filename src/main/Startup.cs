@@ -55,27 +55,14 @@ namespace ei8.IdP
                 // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
                 // options.EmitStaticAudienceClaim = true;
             });
-            
+
             // in-memory, code config
-            builder.AddInMemoryIdentityResources(Config.Ids);
-            builder.AddInMemoryApiScopes(Config.ApiScopes);
-            builder.AddInMemoryApiResources(Config.Apis);            
-            builder.AddInMemoryClients(Config.Clients);
-
-            #region IdentityServerBuilderExtensions.AddAspNetIdentity<ApplicationUser>(); 
-            // TODO: is this region still necessary for claims retrieval?
-            // builder.Services.AddTransientDecorator<IUserClaimsPrincipalFactory<ApplicationUser>, UserClaimsFactory<ApplicationUser>>();
-
-            //builder.Services.Configure<IdentityOptions>(options =>
-            //{
-            //    options.ClaimsIdentity.UserIdClaimType = JwtClaimTypes.Subject;
-            //    options.ClaimsIdentity.UserNameClaimType = JwtClaimTypes.Name;
-            //    options.ClaimsIdentity.RoleClaimType = JwtClaimTypes.Role;
-            //});
-
-            //builder.AddResourceOwnerValidator<ResourceOwnerPasswordValidator<ApplicationUser>>();
-            //builder.AddProfileService<UserProfileService>();
-            #endregion
+            builder.AddInMemoryIdentityResources(Config.Ids)
+                .AddInMemoryApiScopes(Config.ApiScopes)
+                .AddInMemoryApiResources(Config.Apis)
+                .AddInMemoryClients(Config.Clients)
+                // Necessary for claims retrieval
+                .AddAspNetIdentityCustom<ApplicationUser>();
 
             #region Signing Credential
             // not recommended for production - you need to store your key material somewhere secure
