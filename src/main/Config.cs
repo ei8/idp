@@ -51,7 +51,9 @@ namespace ei8.IdP
                     ClientSecrets = { new Secret( Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23Secret).Sha256()) },
                     RedirectUris = { Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23) + Constants.Paths.Login },
                     PostLogoutRedirectUris = { Environment.GetEnvironmentVariable(EnvironmentVariableKeys.ClientsD23) + Constants.Paths.Logout },
-                    AllowedScopes = { IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, IdentityServerConstants.StandardScopes.Email, "avatarapi" }
+                    AllowedScopes = { IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, IdentityServerConstants.StandardScopes.Email, "avatarapi" },
+                    // TODO: Should ideally be TokenUsage.OneTimeOnly
+                    RefreshTokenUsage = TokenUsage.ReUse
                 }
             };
 
