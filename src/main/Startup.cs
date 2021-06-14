@@ -77,7 +77,13 @@ namespace ei8.IdP
             //}
             #endregion
 
-            services.AddAuthentication();
+            services.AddAuthentication()
+                .AddGoogle("Google", options =>
+                {
+                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+                    options.ClientId = Environment.GetEnvironmentVariable(EnvironmentVariableKeys.GoogleClientId);
+                    options.ClientSecret = Environment.GetEnvironmentVariable(EnvironmentVariableKeys.GoogleClientSecret);
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

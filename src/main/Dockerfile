@@ -7,7 +7,7 @@ EXPOSE 80 61700
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["main/IdP.csproj", "main/"]
-RUN dotnet restore "main/IdP.csproj"
+RUN dotnet restore "main/IdP.csproj" --disable-parallel
 COPY . .
 WORKDIR "/src/main"
 RUN dotnet build "IdP.csproj" -c Release -o /app/build

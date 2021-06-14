@@ -109,7 +109,12 @@ namespace IdentityServerHost.Quickstart.UI
             var additionalLocalClaims = new List<Claim>();
             var localSignInProps = new AuthenticationProperties();
             ProcessLoginCallback(result, additionalLocalClaims, localSignInProps);
-            
+
+            // if the external idp sent an email claim, send it so it can be used to check access in api
+            var email = claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
+            if (email != null)
+                additionalLocalClaims.Add(new Claim(JwtClaimTypes.Email, email.Value));
+
             // issue authentication cookie for user
             var isuser = new IdentityServerUser(user.SubjectId)
             {
