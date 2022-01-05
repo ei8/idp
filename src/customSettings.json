@@ -1,0 +1,30 @@
+{
+  "IdentityServer": {
+    //"IssuerUri": "urn:sso.company.com",
+    "ApiResources": [
+      {
+        "Name": "avatarapi-sample",
+        "DisplayName": "ei8 Avatar - sample",
+        "Scopes": [ "avatarapi" ],
+        "ApiSecrets": [ { "Value": "" } ]
+      }
+    ],
+    "Clients": [
+      {
+        "ClientId": "d23-sample",
+        "ClientName": "ei8 d# - sample",
+        "AllowOfflineAccess": true,
+        "AccessTokenLifetime": 120,
+        "RequireConsent": true,
+        "RequirePkce": true,
+        "AllowedGrantTypes": [ "authorization_code" ],
+        "ClientSecrets": [ { "Value": "" } ],
+        "RedirectUris": [ "https://neurul.net/sample/nc/Account/LoginCallback" ],
+        "PostLogoutRedirectUris": [ "https://neurul.net/sample/nc/Account/LogoutCallback" ],
+        "AllowedScopes": [ "openid", "profile", "email", "avatarapi" ],
+        "RefreshTokenUsage": 0,
+        "Enabled": true
+      }
+    ]
+  }
+}
