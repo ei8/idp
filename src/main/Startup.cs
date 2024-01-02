@@ -59,7 +59,7 @@ namespace ei8.IdP
 
             // in-memory, code config
             builder.AddInMemoryIdentityResources(Config.Ids)
-                .AddInMemoryApiScopes(Config.ApiScopes)
+                .AddInMemoryApiScopes(this.Configuration.GetSection("IdentityServer:ApiScopes"))
                 .AddInMemoryApiResources(this.Configuration.GetSection("IdentityServer:ApiResources"))
                 .AddInMemoryClients(this.Configuration.GetSection("IdentityServer:Clients"))
                 // Necessary for claims retrieval

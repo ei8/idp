@@ -20,11 +20,5 @@ namespace ei8.IdP
                 // TODO:,
                 // new IdentityResource("country", new [] { "country" })
             };
-
-        public static IEnumerable<ApiScope> ApiScopes =>
-             new List<ApiScope>
-             {
-                 new ApiScope(name: "avatarapi", displayName: "Access Avatar API endpoints.")
-             };
     }
 }

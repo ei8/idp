@@ -9,6 +9,12 @@
         "ApiSecrets": [ { "Value": "" } ]
       }
     ],
+    "ApiScopes": [
+      {
+        "Name": "avatarapi-sample",
+        "DisplayName": "ei8 Avatar - sample"
+      }
+    ],
     "Clients": [
       {
         "ClientId": "d23-sample",
