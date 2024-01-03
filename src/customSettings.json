@@ -5,7 +5,7 @@
       {
         "Name": "avatarapi-sample",
         "DisplayName": "ei8 Avatar - sample",
-        "Scopes": [ "avatarapi" ],
+        "Scopes": [ "avatarapi-sample" ],
         "ApiSecrets": [ { "Value": "" } ]
       }
     ],
@@ -27,7 +27,7 @@
         "ClientSecrets": [ { "Value": "" } ],
         "RedirectUris": [ "https://neurul.net/sample/nc/Account/LoginCallback" ],
         "PostLogoutRedirectUris": [ "https://neurul.net/sample/nc/Account/LogoutCallback" ],
-        "AllowedScopes": [ "openid", "profile", "email", "avatarapi" ],
+        "AllowedScopes": [ "openid", "profile", "email", "avatarapi-sample" ],
         "RefreshTokenUsage": 0,
         "Enabled": true
       }
